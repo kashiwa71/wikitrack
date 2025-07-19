@@ -1,4 +1,4 @@
-import type { WikiNode } from '../types/wiki';
+import type { WikiNode, WikiPath } from '../types/wiki';
 
 export class WikiService {
   static extractWikipediaTitle(url: string): string | null {
@@ -48,7 +48,18 @@ export class WikiService {
       parentId,
       children: [],
       depth,
-      timestamp: new Date()
+      timestamp: new Date(),
+      visitCount: 1,
+      isCurrentlyViewing: false
+    };
+  }
+
+  static createPath(nodeIds: string[]): WikiPath {
+    return {
+      id: this.generateNodeId(),
+      nodes: nodeIds,
+      isActive: true,
+      lastModified: new Date()
     };
   }
 

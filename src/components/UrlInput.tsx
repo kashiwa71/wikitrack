@@ -74,12 +74,16 @@ const UrlInput: React.FC<UrlInputProps> = ({ onAddNode, disabled }) => {
       </form>
       
       <div className="mt-4 text-sm text-gray-600">
-        <p><strong>使い方:</strong></p>
+        <p><strong>📖 実際のWikipedia閲覧体験をシミュレート:</strong></p>
         <ol className="list-decimal list-inside space-y-1">
-          <li>Wikipediaの記事URLを入力して「追加」ボタンを押してください</li>
-          <li>樹形図のノードをクリックすると、そのページから新しい記事を追加できます</li>
-          <li>閲覧履歴が樹形図として表示されます</li>
+          <li>最初に読みたい記事のURLを入力</li>
+          <li>「子記事を追加」で気になった記事への深掘りを記録</li>
+          <li>「戻る」ボタンで元の記事に戻る操作をシミュレート</li>
+          <li>パンくずリストで閲覧履歴を確認</li>
         </ol>
+        <p className="mt-2 text-xs text-gray-500">
+          💡 将来的にはブラウザ拡張機能として実際の閲覧を自動追跡する予定です
+        </p>
       </div>
     </div>
   );

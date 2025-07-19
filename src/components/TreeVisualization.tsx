@@ -81,9 +81,12 @@ const TreeVisualization: React.FC<TreeVisualizationProps> = ({
     // Add circles for nodes
     node.append('circle')
       .attr('r', 8)
-      .style('fill', (d: D3Node) => d.children ? '#555' : '#999')
-      .style('stroke', '#fff')
-      .style('stroke-width', '2px');
+      .style('fill', (d: D3Node) => {
+        if (d.data.isCurrentlyViewing) return '#10b981'; // Green for current
+        return d.children ? '#555' : '#999';
+      })
+      .style('stroke', (d: D3Node) => d.data.isCurrentlyViewing ? '#059669' : '#fff')
+      .style('stroke-width', (d: D3Node) => d.data.isCurrentlyViewing ? '3px' : '2px');
 
     // Add labels
     node.append('text')
@@ -91,7 +94,8 @@ const TreeVisualization: React.FC<TreeVisualizationProps> = ({
       .attr('x', (d: D3Node) => d.children ? -13 : 13)
       .style('text-anchor', (d: D3Node) => d.children ? 'end' : 'start')
       .style('font-size', '12px')
-      .style('fill', '#333')
+      .style('fill', (d: D3Node) => d.data.isCurrentlyViewing ? '#059669' : '#333')
+      .style('font-weight', (d: D3Node) => d.data.isCurrentlyViewing ? 'bold' : 'normal')
       .text((d: D3Node) => truncateText(d.data.title, 20));
 
     // Add tooltips
